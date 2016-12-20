@@ -1,0 +1,5 @@
+<div *ngIf="todos.length > 0">
+    <div id="todos">
+        <todo-item class="todo item" (toggled)="onTodoToggled($event)" (deleted)="onTodoDeleted($event)" [todo]="todo" *ngFor="let todo of sortedTodos"></todo-item>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+.form-group {
+    padding: 15px 0;
+}
+.form-group input {
+    position: relative;
+    padding: .5rem 5rem .5rem 0.75rem;
+}
+.form-group button {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.input-wrap {
+    position: relative;
+    margin: 11px 0 0;
+}
+.timewatch-wrap {
+    text-align: right;
+}
+timer {
+    margin: 0 20px 0 0;
+    font-size: 2rem;
+}
+timer, buttons {
+    display: inline-block;
+    vertical-align: middle;
+}

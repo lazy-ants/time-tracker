@@ -1,0 +1,17 @@
+.stop-timer,
+.play-timer {
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+.stop-timer i {
+    color: #ff0000;
+}
+.stop-timer i:hover {
+    color: #cc0000;
+}
+.play-timer i {
+    color: #00cc00;
+}
+.play-timer i:hover {
+    color: #009933;
+}
