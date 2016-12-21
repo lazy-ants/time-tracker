@@ -7,9 +7,10 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 
 @Component({
+    moduleId: module.id,
     selector: 'todos',
-    templateUrl: './app/components/todos/todos.component.html',
-    styleUrls: ['./app/components/todos/todos.component.css'],
+    templateUrl: 'todos.component.html',
+    styleUrls: ['todos.component.css'],
 })
 export class TodosComponent implements OnInit {
     todos: ITodo[];

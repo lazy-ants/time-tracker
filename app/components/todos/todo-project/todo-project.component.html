@@ -1,1 +1,3 @@
-
+<select >
+    <option *ngFor="let project of projects" [attr.value] = "project.name">{{ project.name }}</option>
+</select>

@@ -8,9 +8,10 @@ import { TodoProjectComponent } from "../todo-project/todo-project.component";
 
 @Component({
     encapsulation: ViewEncapsulation.None,
+    moduleId: module.id,
     selector: 'todo-form',
-    templateUrl: './app/components/todos/todo-form/todo-form.component.html',
-    styleUrls: ['./app/components/todos/todo-form/todo-form.component.css']
+    templateUrl: 'todo-form.component.html',
+    styleUrls: ['todo-form.component.css']
 })
 
 export class TodoFormComponent {

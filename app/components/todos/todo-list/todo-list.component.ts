@@ -4,9 +4,10 @@ import { ITodo } from '../../../shared/todo.model';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
+    moduleId: module.id,
     selector: 'todo-list',
-    templateUrl: './app/components/todos/todo-list/todo-list.component.html',
-    styleUrls: ['./app/components/todos/todo-list/todo-list.component.css'],
+    templateUrl: 'todo-list.component.html',
+    styleUrls: ['todo-list.component.css'],
 })
 export class TodoListComponent {
     @Input() todos: ITodo[];

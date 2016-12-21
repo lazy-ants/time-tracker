@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TimeWatchService } from './timewatch.service';
 
 @Component ({
+    moduleId: module.id,
     selector: 'buttons',
-    templateUrl: './app/components/todos/todo-timewatch/buttons.component.html',
-    styleUrls: ['./app/components/todos/todo-timewatch/buttons.component.css'],
+    templateUrl: 'buttons.component.html',
+    styleUrls: ['buttons.component.css'],
 })
 
 export class ButtonsComponent implements OnInit, OnDestroy {

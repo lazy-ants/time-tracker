@@ -3,9 +3,10 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import { TimeWatchService } from './timewatch.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'timer',
-    templateUrl: './app/components/todos/todo-timewatch/timer.component.html',
-    styleUrls: ['./app/components/todos/todo-timewatch/timer.component.css'],
+    templateUrl: 'timer.component.html',
+    styleUrls: ['timer.component.css'],
 })
 
 export class TimerComponent implements OnInit, OnDestroy {
@@ -20,15 +21,14 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     sub: Subscription;
 
-    constructor(private TimeWatchService: TimeWatchService) {
-    }
+    constructor(private TimeWatchService: TimeWatchService) { }
 
     ngOnInit() {
         this.playStopUnsubscribe = this.TimeWatchService.playStop$.subscribe((res: any) => this.playStop(res));
     }
 
     ngOnDestroy() {
-        this.playStopUnsubscribe.unsubscribe();;
+        this.playStopUnsubscribe.unsubscribe();
     }
 
     private playStop(res: any) {

@@ -25,3 +25,13 @@ timer, buttons {
     display: inline-block;
     vertical-align: middle;
 }
+todo-project select {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    margin: 11px 0 0;
+    background: transparent;
+    -webkit-border-radius: .25rem;
+    -moz-border-radius: .25rem;
+    border-radius: .25rem;
+    border-color: #cccccc;
+}
