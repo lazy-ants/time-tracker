@@ -1,73 +1,49 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
-import { ITodo } from './todo.model';
+import { ITodo } from "./todo.model";
+
+const API_ENDPOINT = 'http://localhost:3004/todos';
 
 @Injectable()
 export class TodoService {
-    private apiUrl = 'api/todos';
 
     constructor(private http: Http) {}
 
-    getTodos(): Promise<ITodo[]> {
-        return this.http.get(this.apiUrl)
-            .toPromise()
-            .then(res => res.json().data)
-            .catch(this.handleError);
+    getTodos() {
+        return this.http.get(API_ENDPOINT)
+            .map((res: Response) => res.json())
     }
 
-    addTodo(todo: ITodo): Promise<ITodo> {
+    addTodo(todo: ITodo): Observable<ITodo> {
         return this.post(todo);
     }
 
-    saveTodo(todo: ITodo): Promise<ITodo> {
+    saveTodo(todo: ITodo): Observable<ITodo> {
         return this.put(todo);
     }
 
-    deleteTodo(todo: ITodo): Promise<ITodo> {
+    deleteTodo(todo: ITodo): Observable<ITodo> {
         return this.delete(todo);
     }
 
-    private post(todo: ITodo): Promise<ITodo> {
-        let body = JSON.stringify(todo);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers });
-
-        return this.http.post(this.apiUrl, body, options)
-            .toPromise()
-            .then(res => res.json().data)
-            .catch(this.handleError)
+    private post(todo: ITodo): Observable<ITodo> {
+        return this.http.post(API_ENDPOINT)
+            .map((res: Response) => res.json())
     }
 
-    private put(todo: ITodo): Promise<ITodo> {
-        let body = JSON.stringify(todo);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers });
-
-        let url = `${this.apiUrl}/${todo.id}`;
-
-        return this.http.put(url, body, options)
-            .toPromise()
-            .then(res => todo)
-            .catch(this.handleError);
+    private put(todo: ITodo) {
+        return this.http.put('{API_ENDPOINT}/${todo.id}', todo)
+            .map((res: Response) => res.json())
     }
 
-    private delete(todo: ITodo): Promise<ITodo> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers });
-
-        let url = `${this.apiUrl}/${todo.id}`;
-
-        return this.http.delete(url, options)
-            .toPromise()
-            .then(res => todo)
-            .catch(this.handleError);
-    }
-
-    private handleError(error: any) {
-        console.log('An error has occurred: ', error);
-        return Promise.reject(error.message || error)
+    private delete(todo: ITodo): Observable<ITodo> {
+        return this.http.delete('{API_ENDPOINT}/${todo.id}', todo)
+            .map((res: Response) => res.json())
     }
 }

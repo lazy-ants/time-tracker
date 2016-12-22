@@ -3,34 +3,31 @@
     {
       "id": 1,
       "title": "To learn Type script",
-      "done": false
+      "completed": true
     },
     {
       "id": 2,
       "title": "To learn ES6",
-      "done": false
+      "completed": false
     },
     {
       "id": 3,
       "title": "To learn Angular 2",
-      "done": false
+      "completed": false
     }
   ],
   "projects": [
     {
       "id": 1,
-      "title": "Angular 2",
-      "done": false
+      "title": "Angular 2"
     },
     {
       "id": 2,
-      "title": "Ecma Script 6",
-      "done": false
+      "title": "Ecma Script 6"
     },
     {
       "id": 3,
-      "title": "Type Script",
-      "done": false
+      "title": "Type Script"
     }
   ]
 }

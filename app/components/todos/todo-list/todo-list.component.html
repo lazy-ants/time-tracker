@@ -1,5 +1,15 @@
-<div *ngIf="todos.length > 0">
-    <div id="todos">
-        <todo-item class="todo item" (toggled)="onTodoToggled($event)" (deleted)="onTodoDeleted($event)" [todo]="todo" *ngFor="let todo of sortedTodos"></todo-item>
+<div class="todo-item-wrap" *ngFor="let todo of todos">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="todo-item-content">
+                <input type="checkbox" (change)="toggle(todo)" [checked]="todo.completed">
+                <label [class.completed]="todo.completed">{{ todo.title }}</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="todo-item-btn">
+                <button type="button" (click)="delete(todo)"><i><i class="fa fa-trash"></i></i></button>
+            </div>
+        </div>
     </div>
 </div>

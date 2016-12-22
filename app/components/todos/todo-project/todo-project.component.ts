@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { IProject } from '../../../shared/project.model';
 import { ProjectService } from '../../../shared/project.service';
+import { error } from "util";
 
 @Component({
     moduleId: module.id,
@@ -11,17 +12,14 @@ import { ProjectService } from '../../../shared/project.service';
 })
 
 export class TodoProjectComponent implements OnInit {
-    @Input() projects: IProject[];
-    projectService: ProjectService;
-    defaultSelected: string = 'Select project';
+    private projects: IProject;
 
-    constructor(projectService: ProjectService) {
-        this.projects = [];
-        this.projectService = projectService;
-    }
+    constructor(private projectService: ProjectService) { }
 
     ngOnInit() {
-        this.projectService.getProjects().then(projects => this.projects = projects);
+        this.projectService.getProjects().subscribe(
+            projects => this.projects = projects,
+            error => console.error(error)
+        );
     }
-
 }

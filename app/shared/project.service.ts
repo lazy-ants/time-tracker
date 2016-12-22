@@ -1,26 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
-import { IProject } from './project.model';
+const API_ENDPOINT = 'http://localhost:3004/projects';
 
 @Injectable()
 export class ProjectService {
-    private apiUrl = 'api/projects';
 
     constructor(private http: Http) {}
 
-    getProjects(): Promise<IProject[]> {
-        return this.http.get(this.apiUrl)
-            .toPromise()
-            .then(res => res.json().data)
-            .catch(this.handleError);
+    getProjects() {
+        return this.http.get(API_ENDPOINT)
+            .map((res: Response) => res.json())
     }
-
-    private handleError(error: any) {
-        console.log('An error has occurred: ', error);
-        return Promise.reject(error.message || error)
-    }
-
 }
