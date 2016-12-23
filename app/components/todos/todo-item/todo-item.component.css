@@ -1,7 +1,3 @@
-todo-item:last-child {
-    margin: 0;
-    border: none;
-}
 .todo-item-wrap {
     padding: 10px 0;
     margin: 0 0 5px;

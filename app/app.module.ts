@@ -19,7 +19,6 @@ import { TodosComponent } from './components/todos/todos.component';
     imports: [
         BrowserModule,
         HttpModule,
-        InMemoryWebApiModule.forRoot(TodoSeedData),
     ],
     declarations: [
         AppComponent,
