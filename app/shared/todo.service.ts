@@ -20,30 +20,30 @@ export class TodoService {
             .map((res: Response) => res.json())
     }
 
-    addTodo(todo: ITodo): Observable<ITodo> {
-        return this.post(todo);
-    }
-
-    saveTodo(todo: ITodo): Observable<ITodo> {
-        return this.put(todo);
-    }
-
-    deleteTodo(todo: ITodo): Observable<ITodo> {
-        return this.delete(todo);
-    }
-
-    private post(todo: ITodo): Observable<ITodo> {
-        return this.http.post(API_ENDPOINT)
-            .map((res: Response) => res.json())
-    }
-
-    private put(todo: ITodo) {
-        return this.http.put('{API_ENDPOINT}/${todo.id}', todo)
-            .map((res: Response) => res.json())
-    }
-
-    private delete(todo: ITodo): Observable<ITodo> {
-        return this.http.delete('{API_ENDPOINT}/${todo.id}', todo)
-            .map((res: Response) => res.json())
-    }
+    // addTodo(todo: ITodo): Observable<ITodo> {
+    //     return this.post(todo);
+    // }
+    //
+    // saveTodo(todo: ITodo): Observable<ITodo> {
+    //     return this.put(todo);
+    // }
+    //
+    // deleteTodo(todo: ITodo): Observable<ITodo> {
+    //     return this.delete(todo);
+    // }
+    //
+    // private post(todo: ITodo): Observable<ITodo> {
+    //     return this.http.post(API_ENDPOINT)
+    //         .map((res: Response) => res.json())
+    // }
+    //
+    // private put(todo: ITodo) {
+    //     return this.http.put('{API_ENDPOINT}/${todo.id}', todo)
+    //         .map((res: Response) => res.json())
+    // }
+    //
+    // private delete(todo: ITodo): Observable<ITodo> {
+    //     return this.http.delete('{API_ENDPOINT}/${todo.id}', todo)
+    //         .map((res: Response) => res.json())
+    // }
 }

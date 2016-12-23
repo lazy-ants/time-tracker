@@ -1,30 +1,29 @@
-import { Component, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Todo } from '../../../shared/todo.model';
+
+import { TodoService } from '../../../shared/todo.service';
 
 import { TimerComponent } from "../todo-timewatch/timer.component";
 import { ButtonsComponent } from "../todo-timewatch/buttons.component";
 import { TodoProjectComponent } from "../todo-project/todo-project.component";
+import { TodoListComponent } from "../todo-list/todo-list.component";
 
 @Component({
-    encapsulation: ViewEncapsulation.None,
     moduleId: module.id,
     selector: 'todo-form',
     templateUrl: 'todo-form.component.html',
     styleUrls: ['todo-form.component.css']
 })
 
-export class TodoFormComponent {
-    @Output() created: EventEmitter<Todo>;
+export class TodoFormComponent extends TodoListComponent {
+    newTodoTitle = '';
 
-    constructor() {
-        this.created = new EventEmitter<Todo>();
-    }
-
-    create(title: string): void {
-        if (title) {
-            let todo = new Todo(title);
-            this.created.emit(todo);
-        }
+    createTodo(event: Event) {
+        console.log(this.todos);
+        event.preventDefault();
+        let todo = new Todo(this.newTodoTitle);
+        this.todos.push(todo);
+        this.newTodoTitle = '';
     }
 }

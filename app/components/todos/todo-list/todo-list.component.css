@@ -1,4 +1,4 @@
-todo-item:last-child {
+.todo-item-wrap:last-child {
     margin: 0;
     border: none;
 }

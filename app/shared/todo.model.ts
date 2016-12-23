@@ -1,16 +1,17 @@
 export interface ITodo {
     id: number;
     title: string;
-    done: boolean;
+    completed: boolean;
 }
 
 export class Todo implements ITodo {
     id: number;
     title: string;
-    done: boolean;
+    completed: boolean;
 
-    constructor(title: string) {
+    constructor(title: string, number: number ) {
+        this.id = number;
         this.title = title;
-        this.done = false;
+        this.completed = false;
     }
 }

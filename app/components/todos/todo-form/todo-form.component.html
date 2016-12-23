@@ -1,10 +1,10 @@
 <div class="form-group">
     <div class="row">
         <div class="col-md-6">
-            <div class="input-wrap">
-                <input type="text" class="form-control" #titleInput name="title" (keyup.enter)="create(titleInput.value); titleInput.value = ''" placeholder="What are you doing..." />
-                <button type="button" class="btn btn-primary" (click) = "create(titleInput.value); titleInput.value = ''">Add</button>
-            </div>
+            <form class="input-wrap" (ngSubmit)="createTodo($event); todoForm.reset()" #todoForm="ngForm">
+                <input type="text" name="title" [(ngModel)]="newTodoTitle" class="form-control" placeholder="What are you doing..." required />
+                <button type="submit" [disabled]="todoForm.form.invalid" class="btn btn-primary">Add</button>
+            </form>
         </div>
         <div class="col-md-3">
             <div class="select-wrap">
@@ -19,3 +19,4 @@
         </div>
     </div>
 </div>
+<todo-list></todo-list>

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
 import { ITodo } from '../../shared/todo.model';
-import { TodoService } from '../../shared/todo.service';
-import { TimeWatchService } from './todo-timewatch/timewatch.service';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import {error} from "util";
