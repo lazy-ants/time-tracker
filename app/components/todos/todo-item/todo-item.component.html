@@ -1,14 +1,24 @@
 <div class="todo-item-wrap">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="todo-item-content">
                 <input type="checkbox" (change)="toggle()" [checked]="todo.done">
-                <label [ngClass] = "{done: todo.done}">{{ todo.title }}</label>
+                <label [ngClass] = "{done: todo.done}">{{ todo.taskTitle }}</label>
             </div>
         </div>
         <div class="col-md-3">
+            <div class="todo-project-content">
+                {{ todo.projectTitle }}
+            </div>
+        </div>
+        <div class="col-md-2 todo-time-wrap">
+            <div class="todo-time">
+                <span>{{ todo.currentTime }}</span>
+            </div>
+        </div>
+        <div class="col-md-1">
             <div class="todo-item-btn">
-                <button type="button" (click)="delete()"><i><i class="fa fa-trash"></i></i></button>
+                <a (click)="delete()"><i><i class="fa fa-trash"></i></i></a>
             </div>
         </div>
     </div>

@@ -21,50 +21,47 @@ export class ProjectService {
             .catch(this.handleError);
     }
 
-    // addTodo(todo: ITodo): Observable<ITodo> {
-    //     return this.post(todo);
-    // }
-    //
-    // saveTodo(todo: ITodo): Observable<ITodo> {
-    //     return this.put(todo);
-    // }
-    //
-    // deleteTodo(todo: ITodo): Observable<ITodo> {
-    //     return this.delete(todo);
-    // }
-    //
-    // private post(todo: ITodo): Promise<ITodo> {
-    //     let body = JSON.stringify(todo);
-    //     let headers = new Headers({ 'Content-Type': 'application/json' });
-    //     let options = new RequestOptions({ headers });
-    //
-    //     return this.http.post(API_ENDPOINT, body, options)
-    //         .map((res: Response) => res.json().data)
-    //         .catch(this.handleError)
-    // }
-    //
-    // private put(todo: ITodo): Observable<ITodo> {
-    //     let body = JSON.stringify(todo);
-    //     let headers = new Headers({ 'Content-Type': 'application/json' });
-    //     let options = new RequestOptions({ headers });
-    //
-    //     let url = `${API_ENDPOINT}/${todo.id}`;
-    //
-    //     return this.http.put(url, body, options)
-    //         .map((res: Response) => res.json().data)
-    //         .catch(this.handleError)
-    // }
-    //
-    // private delete(todo: ITodo): Observable<ITodo> {
-    //     let headers = new Headers({ 'Content-Type': 'application/json' });
-    //     let options = new RequestOptions({ headers });
-    //
-    //     let url = `${API_ENDPOINT}/${todo.id}`;
-    //
-    //     return this.http.delete(url, options)
-    //         .map((res: Response) => res.json().data)
-    //         .catch(this.handleError)
-    // }
+    addProject(project: IProject): Observable<IProject> {
+        return this.post(project);
+    }
+
+    saveProject(project: IProject): Observable<IProject> {
+        return this.put(project);
+    }
+
+    deleteProject(project: IProject): Observable<IProject> {
+        return this.delete(project);
+    }
+
+    private post(project: IProject): Observable<IProject> {
+        let body = JSON.stringify(project);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers });
+
+        return this.http.post(API_ENDPOINT, body, options)
+            .map((res: Response) => res.json())
+            .catch(this.handleError)
+    }
+
+    private put(project: IProject): Observable<IProject> {
+        let body = JSON.stringify(project);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers });
+
+        let url = `${API_ENDPOINT}/${project.id}`;
+
+        return this.http.put(url, body, options)
+            .map((res: Response) => res.json())
+            .catch(this.handleError)
+    }
+
+    private delete(project: IProject): Observable<IProject> {
+        let url = `${API_ENDPOINT}/${project.id}`;
+
+        return this.http.delete(url)
+            .map((res: Response) => res.json())
+            .catch(this.handleError)
+    }
 
     private handleError(error: any) {
         console.log('An error has occurred: ', error);

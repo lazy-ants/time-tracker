@@ -2,19 +2,23 @@
     <div class="row">
         <div class="col-md-6">
             <div class="input-wrap">
-                <input type="text" class="form-control" #titleInput name="title" (keyup.enter)="create(titleInput.value); titleInput.value = ''" placeholder="What are you doing..." />
-                <button type="button" class="btn btn-primary" (click) = "create(titleInput.value); titleInput.value = ''">Add</button>
+                <input type="text" class="form-control" #titleInput name="title" placeholder="What are you working on..." />
             </div>
         </div>
         <div class="col-md-3">
             <div class="projects-wrap">
-                <todo-project></todo-project>
+                <select #selectedCategory>
+                    <option *ngFor="let project of projects" [value] = "project.title">{{ project.title }}</option>
+                </select>
             </div>
         </div>
         <div class="col-md-3">
             <div class="timewatch-wrap">
                 <timer></timer>
-                <buttons></buttons>
+                <div class="buttons-wrap">
+                    <a class="play-timer" [hidden]="play" (click)="playTimer()"><i class="fa fa-play-circle" aria-hidden="true"></i></a>
+                    <a class="stop-timer" (click) = "stopTimer(); setProjectName(selectedCategory.value); create(titleInput.value); titleInput.value = ''" [hidden]="!play"><i class="fa fa-stop-circle" aria-hidden="true"></i></a>
+                </div>
             </div>
         </div>
     </div>

@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 import { ITodo } from '../../shared/todo.model';
 import { TodoService } from '../../shared/todo.service';
-import { TimeWatchService } from './todo-timewatch/timewatch.service';
+import { TimeWatchService } from '../../shared/timewatch.service';
 import { TodoFormComponent } from './todo-form/todo-form.component';
-import { TodoProjectComponent } from './todo-project/todo-project.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 
 @Component({
+    moduleId: module.id,
     selector: 'todos',
-    templateUrl: './app/components/todos/todos.component.html',
-    styleUrls: ['./app/components/todos/todos.component.css'],
+    templateUrl: 'todos.component.html',
+    styleUrls: ['todos.component.css'],
 })
 export class TodosComponent implements OnInit {
     todos: ITodo[];
@@ -28,6 +28,7 @@ export class TodosComponent implements OnInit {
     onTodoCreated(todo: ITodo): void {
         this.todoService.addTodo(todo).subscribe(todo => this.addTodo(todo));
     }
+
 
     onTodoToggled(todo: ITodo): void {
         this.todoService.saveTodo(todo).subscribe(todo => {});

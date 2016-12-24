@@ -1,16 +1,22 @@
 export interface ITodo {
     id: number;
-    title: string;
+    taskTitle: string;
+    projectTitle: string;
+    currentTime: any;
     done: boolean;
 }
 
 export class Todo implements ITodo {
     id: number;
-    title: string;
+    taskTitle: string;
+    projectTitle: string;
+    currentTime: any;
     done: boolean;
 
-    constructor(title: string) {
-        this.title = title;
+    constructor(taskTitle: string, projectTitle: string, currentTime: any) {
+        this.taskTitle = taskTitle;
+        this.projectTitle = projectTitle;
+        this.currentTime = currentTime;
         this.done = false;
     }
 }

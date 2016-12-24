@@ -5,11 +5,12 @@ import { Todo } from './shared/todo.model';
 import { Project } from './shared/project.model';
 import { TodoService } from './shared/todo.service';
 import { ProjectService } from './shared/project.service';
-import { TimeWatchService } from './components/todos/todo-timewatch/timewatch.service';
+import { TimeWatchService } from './shared/timewatch.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'todo-app',
-    templateUrl: './app/app.component.html',
+    templateUrl: 'app.component.html',
     providers: [ TodoService, ProjectService, TimeWatchService ],
 })
 

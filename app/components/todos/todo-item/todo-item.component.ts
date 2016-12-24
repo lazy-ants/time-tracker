@@ -4,9 +4,10 @@ import { Todo } from '../../../shared/todo.model';
 
 
 @Component({
+    moduleId: module.id,
     selector: 'todo-item',
-    templateUrl: './app/components/todos/todo-item/todo-item.component.html',
-    styleUrls: ['./app/components/todos/todo-item/todo-item.component.css']
+    templateUrl: 'todo-item.component.html',
+    styleUrls: ['todo-item.component.css']
 })
 
 export class TodoItemComponent {

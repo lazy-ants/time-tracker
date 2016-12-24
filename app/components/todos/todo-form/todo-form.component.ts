@@ -1,28 +1,63 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-
+import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { TimeWatchService } from '../../../shared/timewatch.service';
+import { ProjectService } from '../../../shared/project.service';
 import { Todo } from '../../../shared/todo.model';
+import { IProject } from '../../../shared/project.model';
 
-import { TimerComponent } from "../todo-timewatch/timer.component";
-import { ButtonsComponent } from "../todo-timewatch/buttons.component";
-import { TodoProjectComponent } from "../todo-project/todo-project.component";
+import { TimerComponent } from "./timer.component";
 
 @Component({
+    moduleId: module.id,
     selector: 'todo-form',
-    templateUrl: './app/components/todos/todo-form/todo-form.component.html',
-    styleUrls: ['./app/components/todos/todo-form/todo-form.component.css']
+    templateUrl: 'todo-form.component.html',
+    styleUrls: ['todo-form.component.css']
 })
 
-export class TodoFormComponent {
+export class TodoFormComponent implements OnInit, OnDestroy, TimerComponent {
+    projects: IProject[];
+    projectService: ProjectService;
+
     @Output() created: EventEmitter<Todo>;
 
-    constructor() {
+    private playStopUnsubscribe: any;
+    private play: boolean;
+    private projectTitle: string;
+
+    constructor(private TimeWatchService: TimeWatchService, projectService: ProjectService) {
+        this.projects = [];
+        this.projectService = projectService;
         this.created = new EventEmitter<Todo>();
     }
 
-    create(title: string): void {
-        if (title) {
-            let todo = new Todo(title);
+    ngOnInit() {
+        this.playStopUnsubscribe = this.TimeWatchService.playStop$.subscribe((res: any) => this.setPlay(res));
+        this.projectService.getProjects().subscribe(projects => this.projects = projects);
+    }
+
+    ngOnDestroy() {
+        this.playStopUnsubscribe.unsubscribe();
+    }
+
+    private setPlay(res: any) {
+        (res.play) ? this.play = true : this.play = false;
+    }
+
+    playTimer() {
+        this.TimeWatchService.playTimer();
+    }
+
+    stopTimer() {
+        this.TimeWatchService.stopTimer();
+    }
+
+    create(taskTitle: string): void {
+        if (taskTitle && this.projectTitle) {
+            let todo = new Todo(taskTitle, this.projectTitle);
             this.created.emit(todo);
         }
+    }
+
+    setProjectName(projectTitle: string) {
+        this.projectTitle = projectTitle;
     }
 }

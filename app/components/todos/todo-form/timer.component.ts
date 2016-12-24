@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy,  } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { TimeWatchService } from './timewatch.service';
+import { TimeWatchService } from '../../../shared/timewatch.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'timer',
-    templateUrl: './app/components/todos/todo-timewatch/timer.component.html',
-    styleUrls: ['./app/components/todos/todo-timewatch/timer.component.css'],
+    templateUrl: 'timer.component.html',
+    styleUrls: ['timer.component.css'],
 })
 
 export class TimerComponent implements OnInit, OnDestroy {
@@ -13,7 +14,6 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     start = 0;
     ticks = 0;
-
     minutesDisplay: number = 0;
     hoursDisplay: number = 0;
     secondsDisplay: number = 0;
@@ -40,8 +40,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     }
 
     private startTimer() {
-
-        let timer = Observable.timer(1, 1000);
+        let timer = Observable.timer(1, 1);
         this.sub = timer.subscribe(
             t => {
                 this.ticks = this.start + t;
@@ -56,7 +55,6 @@ export class TimerComponent implements OnInit, OnDestroy {
     private stopTimer() {
         this.start = 0;
         this.ticks = 0;
-
         this.minutesDisplay = 0;
         this.hoursDisplay = 0;
         this.secondsDisplay = 0;
