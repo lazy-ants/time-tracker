@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ITodo } from '../../shared/todo.model';
-import { TodoService } from '../../shared/todo.service';
+import { ITask } from '../../shared/task.model';
+import { TaskService } from '../../shared/task.service';
 import { TimeWatchService } from '../../shared/timewatch.service';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
@@ -13,40 +13,40 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     styleUrls: ['todos.component.css'],
 })
 export class TodosComponent implements OnInit {
-    todos: ITodo[];
-    todoService: TodoService;
+    tasks: ITask[];
+    taskService: TaskService;
 
-    constructor(todoService: TodoService) {
-        this.todos = [];
-        this.todoService = todoService;
+    constructor(taskService: TaskService) {
+        this.tasks = [];
+        this.taskService = taskService;
     }
 
     ngOnInit() {
-        this.todoService.getTodos().subscribe(todos => this.todos = todos);
+        this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
     }
 
-    onTodoCreated(todo: ITodo): void {
-        this.todoService.addTodo(todo).subscribe(todo => this.addTodo(todo));
+    onTaskCreated(task: ITask): void {
+        this.taskService.addTask(task).subscribe(task => this.addTask(task));
     }
 
 
-    onTodoToggled(todo: ITodo): void {
-        this.todoService.saveTodo(todo).subscribe(todo => {});
+    onTaskToggled(task: ITask): void {
+        this.taskService.saveTask(task).subscribe(task => {});
     }
 
-    onTodoDeleted(todo: ITodo): void {
-        this.todoService.deleteTodo(todo).subscribe(todo => this.deleteTodo(todo));
+    onTaskDeleted(task: ITask): void {
+        this.taskService.deleteTask(task).subscribe(task => this.deleteTask(task));
     }
 
-    private addTodo(todo: ITodo): void {
-        this.todos.push(todo);
+    private addTask(task: ITask): void {
+        this.tasks.push(task);
     }
 
-    private deleteTodo(todo: ITodo): void {
-        let index = this.todos.indexOf(todo);
+    private deleteTask(task: ITask): void {
+        let index = this.tasks.indexOf(task);
 
         if (index > -1) {
-            this.todos.splice(index, 1);
+            this.tasks.splice(index, 1);
         }
     }
 }

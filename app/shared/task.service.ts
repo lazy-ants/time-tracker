@@ -6,35 +6,35 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { ITodo } from './todo.model';
+import { ITask } from './task.model';
 
-const API_ENDPOINT = 'http://localhost:3004/todos';
+const API_ENDPOINT = 'http://localhost:3015/tasks';
 
 @Injectable()
-export class TodoService {
+export class TaskService {
 
     constructor(private http: Http) {}
 
-    getTodos(): Observable<ITodo[]> {
+    getTasks(): Observable<ITask[]> {
         return this.http.get(API_ENDPOINT)
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    addTodo(todo: ITodo): Observable<ITodo> {
-        return this.post(todo);
+    addTask(task: ITask): Observable<ITask> {
+        return this.post(task);
     }
 
-    saveTodo(todo: ITodo): Observable<ITodo> {
-        return this.put(todo);
+    saveTask(task: ITask): Observable<ITask> {
+        return this.put(task);
     }
 
-    deleteTodo(todo: ITodo): Observable<ITodo> {
-        return this.delete(todo);
+    deleteTask(task: ITask): Observable<ITask> {
+        return this.delete(task);
     }
 
-    private post(todo: ITodo): Observable<ITodo> {
-        let body = JSON.stringify(todo);
+    private post(task: ITask): Observable<ITask> {
+        let body = JSON.stringify(task);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers });
 
@@ -43,20 +43,20 @@ export class TodoService {
             .catch(this.handleError)
     }
 
-    private put(todo: ITodo): Observable<ITodo> {
-        let body = JSON.stringify(todo);
+    private put(task: ITask): Observable<ITask> {
+        let body = JSON.stringify(task);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers });
 
-        let url = `${API_ENDPOINT}/${todo.id}`;
+        let url = `${API_ENDPOINT}/${task.id}`;
 
         return this.http.put(url, body, options)
             .map((res: Response) => res.json())
             .catch(this.handleError)
     }
 
-    private delete(todo: ITodo): Observable<ITodo> {
-        let url = `${API_ENDPOINT}/${todo.id}`;
+    private delete(task: ITask): Observable<ITask> {
+        let url = `${API_ENDPOINT}/${task.id}`;
 
         return this.http.delete(url)
             .map((res: Response) => res.json())

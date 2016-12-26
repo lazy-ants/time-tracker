@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { TimeWatchService } from '../../../shared/timewatch.service';
 import { ProjectService } from '../../../shared/project.service';
-import { Todo } from '../../../shared/todo.model';
+import { Task } from '../../../shared/task.model';
 import { IProject } from '../../../shared/project.model';
 
 import { TimerComponent } from "./timer.component";
@@ -13,11 +13,11 @@ import { TimerComponent } from "./timer.component";
     styleUrls: ['todo-form.component.css']
 })
 
-export class TodoFormComponent implements OnInit, OnDestroy, TimerComponent {
+export class TodoFormComponent implements OnInit, OnDestroy {
     projects: IProject[];
     projectService: ProjectService;
 
-    @Output() created: EventEmitter<Todo>;
+    @Output() created: EventEmitter<Task>;
 
     private playStopUnsubscribe: any;
     private play: boolean;
@@ -26,7 +26,7 @@ export class TodoFormComponent implements OnInit, OnDestroy, TimerComponent {
     constructor(private TimeWatchService: TimeWatchService, projectService: ProjectService) {
         this.projects = [];
         this.projectService = projectService;
-        this.created = new EventEmitter<Todo>();
+        this.created = new EventEmitter<Task>();
     }
 
     ngOnInit() {
@@ -50,12 +50,12 @@ export class TodoFormComponent implements OnInit, OnDestroy, TimerComponent {
         this.TimeWatchService.stopTimer();
     }
 
-    create(taskTitle: string): void {
-        if (taskTitle && this.projectTitle) {
-            let todo = new Todo(taskTitle, this.projectTitle);
-            this.created.emit(todo);
-        }
-    }
+    // create(title: string): void {
+    //     if (title && this.projectTitle) {
+    //         let task = new Task(title, this.projectTitle);
+    //         this.created.emit(task);
+    //     }
+    // }
 
     setProjectName(projectTitle: string) {
         this.projectTitle = projectTitle;

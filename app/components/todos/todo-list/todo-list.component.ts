@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ITodo } from '../../../shared/todo.model';
+import { ITask } from '../../../shared/task.model';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
@@ -10,18 +10,18 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
     styleUrls: ['todo-list.component.css'],
 })
 export class TodoListComponent {
-    @Input() todos: ITodo[];
-    @Output() toggled: EventEmitter<ITodo>;
-    @Output() deleted: EventEmitter<ITodo>;
+    @Input() tasks: ITask[];
+    @Output() toggled: EventEmitter<ITask>;
+    @Output() deleted: EventEmitter<ITask>;
 
     constructor() {
-        this.toggled = new EventEmitter<ITodo>();
-        this.deleted = new EventEmitter<ITodo>();
+        this.toggled = new EventEmitter<ITask>();
+        this.deleted = new EventEmitter<ITask>();
     }
 
-    get sortedTodos(): ITodo[] {
-        return this.todos
-            .map(todo => todo)
+    get sortedTasks(): ITask[] {
+        return this.tasks
+            .map(task => task)
             .sort((a, b) => {
                 if (a.title > b.title) return 1;
                 else if (a.title < b.title) return -1;
@@ -34,11 +34,11 @@ export class TodoListComponent {
             });
     }
 
-    onTodoToggled(todo: ITodo): void {
-        this.toggled.emit(todo);
+    onTodoToggled(task: ITask): void {
+        this.toggled.emit(task);
     }
 
-    onTodoDeleted(todo: ITodo): void {
-        this.deleted.emit(todo);
+    onTodoDeleted(task: ITask): void {
+        this.deleted.emit(task);
     }
 }

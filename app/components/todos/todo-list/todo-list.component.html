@@ -1,5 +1,5 @@
 <div>
     <div id="todos">
-        <todo-item class="todo item" (toggled)="onTodoToggled($event)" (deleted)="onTodoDeleted($event)" [todo]="todo" *ngFor="let todo of sortedTodos"></todo-item>
+        <todo-item class="todo item" (toggled)="onTaskToggled($event)" (deleted)="onTaskDeleted($event)" [task]="task" *ngFor="let task of sortedTasks"></todo-item>
     </div>
 </div>

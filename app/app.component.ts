@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 import { TodosComponent } from './components/todos/todos.component';
-import { Todo } from './shared/todo.model';
+import { Task } from './shared/task.model';
 import { Project } from './shared/project.model';
-import { TodoService } from './shared/todo.service';
+import { TaskService } from './shared/task.service';
 import { ProjectService } from './shared/project.service';
 import { TimeWatchService } from './shared/timewatch.service';
 
@@ -11,7 +11,7 @@ import { TimeWatchService } from './shared/timewatch.service';
     moduleId: module.id,
     selector: 'todo-app',
     templateUrl: 'app.component.html',
-    providers: [ TodoService, ProjectService, TimeWatchService ],
+    providers: [ TaskService, ProjectService, TimeWatchService ],
 })
 
 export class AppComponent {

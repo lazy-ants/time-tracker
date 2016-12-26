@@ -4,6 +4,16 @@
     border-bottom: 1px solid #ccc;
     transition: all .4s ease;
 }
+.todo-item-content {
+    padding: 0 0 0 20px;
+    position: relative;
+}
+.todo-item-content input {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin: -7px 0 0 0;
+}
 .todo-item-btn,
 .todo-time-wrap {
     text-align: right;

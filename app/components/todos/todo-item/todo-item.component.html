@@ -2,18 +2,18 @@
     <div class="row">
         <div class="col-md-6">
             <div class="todo-item-content">
-                <input type="checkbox" (change)="toggle()" [checked]="todo.done">
-                <label [ngClass] = "{done: todo.done}">{{ todo.taskTitle }}</label>
+                <input type="checkbox" (change)="toggle()" [checked]="task.done">
+                <label [ngClass] = "{done: task.done}">{{ task.title }}</label>
             </div>
         </div>
         <div class="col-md-3">
             <div class="todo-project-content">
-                {{ todo.projectTitle }}
+                {{ task.projectTitle }}
             </div>
         </div>
         <div class="col-md-2 todo-time-wrap">
             <div class="todo-time">
-                <span>{{ todo.currentTime }}</span>
+                <span>{{ task.currentTime }}</span>
             </div>
         </div>
         <div class="col-md-1">
