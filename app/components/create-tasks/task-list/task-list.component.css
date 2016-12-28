@@ -1,0 +1,48 @@
+.task-item-wrap {
+    padding: 10px 0;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: all .4s ease;
+}
+.task-item-content input,
+.task-item-content a {
+    display: inline-block;
+    vertical-align: middle;
+}
+.task-item-content {
+    position: relative;
+}
+.task-item-content input,
+.task-item-content input:focus
+.task-item-content input:visited {
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.time-interval {
+    text-align: right;
+}
+.task-item-wrap:hover .delete-btn {
+    visibility: visible;
+    opacity: 1;
+}
+.delete-btn {
+    position: absolute;
+    left: -30px;
+    top: 0;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.4s linear;
+}
+.delete-btn i {
+    transition: all .4s ease;
+}
+.delete-btn:hover i {
+    color: #ff0000;
+}
+
+
+

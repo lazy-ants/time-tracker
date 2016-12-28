@@ -8,7 +8,7 @@
         <div class="col-md-3">
             <div class="projects-wrap">
                 <select #selectedCategory>
-                    <option *ngFor="let project of projects" [value] = "project.title">{{ project.title }}</option>
+                    <option *ngFor="let task of tasks" [value] = "task.title">{{ task.title }}</option>
                 </select>
             </div>
         </div>
@@ -17,7 +17,8 @@
                 <timer></timer>
                 <div class="buttons-wrap">
                     <a class="play-timer" [hidden]="play" (click)="playTimer()"><i class="fa fa-play-circle" aria-hidden="true"></i></a>
-                    <a class="stop-timer" (click) = "stopTimer(); setProjectName(selectedCategory.value); create(titleInput.value); titleInput.value = ''" [hidden]="!play"><i class="fa fa-stop-circle" aria-hidden="true"></i></a>
+                    <a class="stop-timer" [hidden]="!play" (click) = "stopTimer();"><i class="fa fa-stop-circle" aria-hidden="true"></i></a>
+                    <!--<a class="stop-timer" (click) = "stopTimer(); setProjectName(selectedCategory.value); create(titleInput.value); titleInput.value = ''" [hidden]="!play"><i class="fa fa-stop-circle" aria-hidden="true"></i></a>-->
                 </div>
             </div>
         </div>

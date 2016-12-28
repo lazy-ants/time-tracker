@@ -1,0 +1,8 @@
+<header class="header-wrap">
+    <div class="container">
+        <task-form [tasks]="tasks" (created)="onTaskCreated($event)" ></task-form>
+    </div>
+</header>
+<div class="content-wrap">
+    <task-list [tasks]="tasks" (toggled) = "onTaskToggled($event)" (deleted) = "onTaskDeleted($event)"></task-list>
+</div>

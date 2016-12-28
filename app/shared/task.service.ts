@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 
 import { ITask } from './task.model';
 
-const API_ENDPOINT = 'http://localhost:3015/tasks';
+const API_ENDPOINT = 'http://localhost:3015/projects';
 
 @Injectable()
 export class TaskService {
@@ -57,6 +57,7 @@ export class TaskService {
 
     private delete(task: ITask): Observable<ITask> {
         let url = `${API_ENDPOINT}/${task.id}`;
+        // let url = `http://localhost:3015/tasks/${task.id}`;
 
         return this.http.delete(url)
             .map((res: Response) => res.json())

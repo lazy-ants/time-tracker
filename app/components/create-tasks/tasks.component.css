@@ -1,0 +1,7 @@
+.header-wrap {
+    margin: 0 0 20px;
+    background: #fff;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 8px 0px;
+    -moz-box-shadow: 0rgba(0, 0, 0, 0.0980392) 0px 2px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 8px 0px;
+}
