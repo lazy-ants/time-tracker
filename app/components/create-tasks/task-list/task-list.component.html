@@ -5,6 +5,30 @@
 <!--</div>-->
 <!--<div class="todo-item-wrap" *ngFor="let task of tasks" (toggled) = "onTaskToggled($event)" (deleted) = "onTaskDeleted($event)">-->
 <div class="project-wrap" *ngFor="let task of tasks">
+    <div class="task-item-wrap clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="task-item-content">
+                        <a class="delete-btn" (click)="removeTask(task)"><i class="fa fa-trash"></i></a>
+                        <input type="text" value="{{ task.title }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="project-content">
+                        {{ task.project.title }}
+                    </div>
+                </div>
+                <div class="col-md-3 time-wrap">
+                    <div class="time-interval">
+                        <span>{{ task.createdAt }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="project-wrap" *ngFor="let task of tasks">
     <div class="task-item-wrap clearfix" *ngFor="let t of task.tasks">
         <div class="container">
             <div class="row">

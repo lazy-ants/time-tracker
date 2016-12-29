@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { TimeWatchService } from '../../../shared/timewatch.service';
-import { ITask } from '../../../shared/task.model';
+import { ProjectService } from '../../../shared/project.service';
+import { TaskService } from '../../../shared/task.service';
+import { IProject } from '../../../shared/project.model';
+import { Task } from '../../../shared/task.model';
 
 import { TimerComponent } from "./timer.component";
 
@@ -12,20 +15,27 @@ import { TimerComponent } from "./timer.component";
 })
 
 export class TaskFormComponent implements OnInit, OnDestroy {
-    @Input() tasks: ITask[];
 
-    @Output() created: EventEmitter<ITask>;
+    @Output() created: EventEmitter<Task>;
 
+    projects: IProject[];
+    tasks: Task[];
+    projectService: ProjectService;
+    projectTitle: string;
     private playStopUnsubscribe: any;
     private play: boolean;
-    // private projectTitle: string;
 
-    constructor(private TimeWatchService: TimeWatchService) {
-        this.created = new EventEmitter<ITask>();
+    constructor(private TimeWatchService: TimeWatchService,
+                private projectService: ProjectService,
+                private taskService: TaskService) {
+        this.tasks = [];
+        this.created = new EventEmitter<Task>();
     }
 
     ngOnInit() {
         this.playStopUnsubscribe = this.TimeWatchService.playStop$.subscribe((res: any) => this.setPlay(res));
+        this.projectService.getProjects().subscribe(projects => this.projects = projects);
+        this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
     }
 
     ngOnDestroy() {
@@ -43,16 +53,13 @@ export class TaskFormComponent implements OnInit, OnDestroy {
     stopTimer() {
         this.TimeWatchService.stopTimer();
     }
-
-    // create(title: string): void {
-    //     if (title && this.projectTitle) {
-    //         let task = new Task(title, this.projectTitle);
-    //         this.created.emit(task);
-    //     }
-    // }
-
-    // setProjectName(projectTitle: string) {
-    //     this.projectTitle = projectTitle;
-    // }
-
+    create(title: string): void {
+        if (title && this.projectTitle) {
+            let task = new Task(title, this.projectTitle);
+            this.created.emit(task);
+        }
+    }
+    setProjectName(projectTitle: string) {
+        this.projectTitle = projectTitle;
+    }
 }

@@ -26,21 +26,32 @@ export class TasksComponent implements OnInit {
     }
 
     private deleteTask(task: ITask): void {
-        for (let key in this.tasks) {
-            let tasks = this.tasks[key].tasks;
-            let index = tasks.indexOf(task);
-            if (index > -1) {
-                tasks.splice(index, 1);
-            }
+        let index = this.tasks.indexOf(task);
+
+        if (index > -1) {
+            this.tasks.splice(index, 1);
         }
     }
     onTaskDeleted(task: ITask): void {
-        console.log(task);
         this.taskService.deleteTask(task).subscribe(task => this.deleteTask(task));
     }
-    // onTaskCreated(task: ITask): void {
-    //     this.taskService.addTask(task).subscribe(task => this.addTask(task));
+
+    // private deleteTask(task: ITask): void {
+    //     for (let key in this.tasks) {
+    //         let tasks = this.tasks[key].tasks;
+    //         let index = tasks.indexOf(task);
+    //         if (index > -1) {
+    //             tasks.splice(index, 1);
+    //         }
+    //     }
     // }
+    private addTask(task: ITask): void {
+        this.tasks.push(task);
+        console.log(1111);
+    }
+    onTaskCreated(task: ITask): void {
+        this.taskService.addTask(task).subscribe(task => this.addTask(task));
+    }
     //
     //
     // onTaskToggled(task: ITask): void {
@@ -48,16 +59,8 @@ export class TasksComponent implements OnInit {
     // }
     //
     //
-    // private addTask(task: ITask): void {
-    //     this.tasks.push(task);
-    // }
+
     //
-    // private deleteTask(task: ITask): void {
-    //     let index = this.tasks.indexOf(task);
-    //
-    //     if (index > -1) {
-    //         this.tasks.splice(index, 1);
-    //     }
-    // }
+
 
 }

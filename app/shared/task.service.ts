@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 
 import { ITask } from './task.model';
 
-const API_ENDPOINT = 'http://localhost:3015/projects';
+const API_ENDPOINT = 'http://localhost:3015/tasks';
 
 @Injectable()
 export class TaskService {

@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 import { TaskListComponent } from "./components/create-tasks/task-list/task-list.component";
@@ -12,6 +13,7 @@ import { TasksComponent } from './components/create-tasks/tasks.component';
     imports: [
         BrowserModule,
         HttpModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,

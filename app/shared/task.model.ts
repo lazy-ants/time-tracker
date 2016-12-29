@@ -1,22 +1,25 @@
 export interface ITask {
     id: number;
-    title: any;
-    tasks: any;
-    projectTitle: string;
-    createdAt: any;
+    title: string;
+    project: Project;
+    user: User;
+    createdAt: string;
+    records: Record[];
+    done: boolean;
 }
 
 export class Task implements ITask {
     id: number;
-    title: any;
-    tasks: any;
-    projectTitle: string;
-    createdAt: any;
+    title: string;
+    project: Project;
+    user: User;
+    createdAt: string;
+    records: Record[];
+    done: boolean;
 
-    constructor(title: any, tasks: any, projectTitle: string, createdAt: any) {
+    constructor(title: any, project: Project, createdAt: string) {
         this.title = title;
-        this.tasks = tasks;
-        this.projectTitle = projectTitle;
+        this.project = project;
         this.createdAt = createdAt;
     }
 }

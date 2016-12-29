@@ -14,12 +14,19 @@ export class TaskListComponent {
     @Output() deleted: EventEmitter<ITask>;
 
     constructor() {
-        this.toggled = new EventEmitter<ITask>();
+        // this.toggled = new EventEmitter<ITask>();
         this.deleted = new EventEmitter<ITask>();
     }
+    // removeTask(t) {
+    //     this.deleted.emit(t);
+    // }
+    removeTask(task: ITask) {
+        this.deleted.emit(task);
+        let index = this.tasks.indexOf(task);
 
-    removeTask(t) {
-        this.deleted.emit(t);
+        if (index > -1) {
+            this.tasks.splice(index, 1);
+        }
     }
 
     // @Output() toggled: EventEmitter<ITask>;
