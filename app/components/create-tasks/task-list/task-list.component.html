@@ -1,9 +1,3 @@
-<!--<div>-->
-<!--<div id="tasks">-->
-<!--<task-item class="todo item" (toggled)="onTaskToggled($event)" (deleted)="onTaskDeleted($event)" [task]="task" *ngFor="let task of sortedTasks"></task-item>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="todo-item-wrap" *ngFor="let task of tasks" (toggled) = "onTaskToggled($event)" (deleted) = "onTaskDeleted($event)">-->
 <div class="project-wrap" *ngFor="let task of tasks">
     <div class="task-item-wrap clearfix">
         <div class="container">
@@ -11,7 +5,7 @@
                 <div class="col-md-6">
                     <div class="task-item-content">
                         <a class="delete-btn" (click)="removeTask(task)"><i class="fa fa-trash"></i></a>
-                        <input type="text" value="{{ task.title }}">
+                        <input type="text" [(ngModel)]="task.title" #titileInput name="title" value="{{ task.title }}">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -21,7 +15,16 @@
                 </div>
                 <div class="col-md-3 time-wrap">
                     <div class="time-interval">
-                        <span>{{ task.createdAt }}</span>
+                        <span>{{ msToTime(task.finishedAt - task.createdAt) }}</span>
+                        <div class="records-wrap">
+                            <span>{{ task.createdAt | date:'shortTime' }}</span> -
+                            <span>{{ task.finishedAt | date:'shortTime' }}</span>
+                        </div>
+                        <a class="play-timer" [hidden]="play" (click)="playTimer();
+                            addTitle(task.title);
+                            createdAt = TimeWatchService.whatTime()">
+                            <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -16,11 +16,12 @@
             <div class="timewatch-wrap">
                 <timer></timer>
                 <div class="buttons-wrap">
-                    <a class="play-timer" [hidden]="play" (click)="playTimer()">
+                    <a class="play-timer" [hidden]="play" (click)="playTimer(); createdAt = TimeWatchService.whatTime()">
                         <i class="fa fa-play-circle" aria-hidden="true"></i>
                     </a>
                     <a class="stop-timer" [hidden]="!play" (click) = "stopTimer();
                         setProjectName(selectedCategory.value);
+                        finishedAt = TimeWatchService.whatTime();
                         create(titleInput.value); titleInput.value = ''">
                         <i class="fa fa-stop-circle" aria-hidden="true"></i>
                     </a>

@@ -7,6 +7,10 @@ export class TimeWatchService {
     private stop: boolean = true;
     public playStop$ = new EventEmitter();
 
+    whatTime() {
+        return Date.parse(new Date());
+    }
+
     public playTimer() {
         this.play = true;
         this.stop = false;

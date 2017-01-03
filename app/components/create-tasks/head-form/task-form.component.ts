@@ -20,8 +20,9 @@ export class TaskFormComponent implements OnInit, OnDestroy {
 
     projects: IProject[];
     tasks: Task[];
-    projectService: ProjectService;
     projectTitle: string;
+    createdAt: string;
+    finishedAt: string;
     private playStopUnsubscribe: any;
     private play: boolean;
 
@@ -53,12 +54,14 @@ export class TaskFormComponent implements OnInit, OnDestroy {
     stopTimer() {
         this.TimeWatchService.stopTimer();
     }
+
     create(title: string): void {
-        if (title && this.projectTitle) {
-            let task = new Task(title, this.projectTitle);
+        if (title && this.projectTitle && this.createdAt && this.finishedAt ) {
+            let task = new Task(title, this.projectTitle, this.createdAt, this.finishedAt);
             this.created.emit(task);
         }
     }
+
     setProjectName(projectTitle: string) {
         this.projectTitle = projectTitle;
     }
