@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { ITask } from '../../shared/task.model';
 import { TaskService } from '../../shared/task.service';
+import { ProjectService } from '../../shared/project.service';
 import { TimeWatchService } from '../../shared/timewatch.service';
 import { TaskFormComponent } from './head-form/task-form.component';
 import { TaskListComponent} from './task-list/task-list.component';
@@ -14,15 +15,16 @@ import { TaskListComponent} from './task-list/task-list.component';
 })
 export class TasksComponent implements OnInit {
     tasks: ITask[];
-    taskService: TaskService;
+    title: string;
 
-    constructor(taskService: TaskService) {
+    constructor (private taskService: TaskService,
+                 private projectService: ProjectService) {
         this.tasks = [];
-        this.taskService = taskService;
     }
 
     ngOnInit() {
         this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
+        this.projectService.getProjects().subscribe(projects => this.projects = projects);
     }
 
     private deleteTask(task: ITask): void {
@@ -47,20 +49,19 @@ export class TasksComponent implements OnInit {
     // }
     private addTask(task: ITask): void {
         this.tasks.push(task);
-        console.log(1111);
     }
+
     onTaskCreated(task: ITask): void {
         this.taskService.addTask(task).subscribe(task => this.addTask(task));
     }
-    //
-    //
+
+    onUpdate(task: ITask) {
+        this.title = task.title;
+        console.log(task);
+    }
+
     // onTaskToggled(task: ITask): void {
     //     this.taskService.saveTask(task).subscribe(task => {});
     // }
-    //
-    //
-
-    //
-
 
 }

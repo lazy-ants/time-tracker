@@ -12,18 +12,17 @@ import { ITask } from '../../../shared/task.model';
 export class TaskListComponent {
 
     @Input() tasks: ITask[];
-    @Output() deleted: EventEmitter<ITask>;
+    @Output() deleted = new EventEmitter<ITask>();
+    @Output() update = new EventEmitter();
 
-    constructor(private TimeWatchService: TimeWatchService) {
-        this.deleted = new EventEmitter<ITask>();
-    }
+    constructor(private TimeWatchService: TimeWatchService) { }
 
     playTimer() {
         this.TimeWatchService.playTimer();
     }
 
-    addTitle(title: string) {
-        console.log(title);
+    updateTitle(task: ITask): void {
+        this.update.emit(task);
     }
 
     msToTime(duration) {

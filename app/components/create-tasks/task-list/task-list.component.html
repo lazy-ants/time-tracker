@@ -5,7 +5,7 @@
                 <div class="col-md-6">
                     <div class="task-item-content">
                         <a class="delete-btn" (click)="removeTask(task)"><i class="fa fa-trash"></i></a>
-                        <input type="text" [(ngModel)]="task.title" #titileInput name="title" value="{{ task.title }}">
+                        <input type="text" [(ngModel)]="task.title" name="title" value="{{ task.title }}">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -21,7 +21,7 @@
                             <span>{{ task.finishedAt | date:'shortTime' }}</span>
                         </div>
                         <a class="play-timer" [hidden]="play" (click)="playTimer();
-                            addTitle(task.title);
+                            updateTitle(task);
                             createdAt = TimeWatchService.whatTime()">
                             <i class="fa fa-play-circle" aria-hidden="true"></i>
                         </a>
@@ -31,27 +31,27 @@
         </div>
     </div>
 </div>
-<div class="project-wrap" *ngFor="let task of tasks">
-    <div class="task-item-wrap clearfix" *ngFor="let t of task.tasks">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="task-item-content">
-                        <a class="delete-btn" (click)="removeTask(t)"><i class="fa fa-trash"></i></a>
-                        <input type="text" value="{{ t.title }}">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="project-content">
-                        {{ task.title }}
-                    </div>
-                </div>
-                <div class="col-md-3 time-wrap">
-                    <div class="time-interval">
-                        <span>{{ task.createdAt }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="project-wrap" *ngFor="let task of tasks">-->
+    <!--<div class="task-item-wrap clearfix" *ngFor="let t of task.tasks">-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-6">-->
+                    <!--<div class="task-item-content">-->
+                        <!--<a class="delete-btn" (click)="removeTask(t)"><i class="fa fa-trash"></i></a>-->
+                        <!--<input type="text" value="{{ t.title }}">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-3">-->
+                    <!--<div class="project-content">-->
+                        <!--{{ task.title }}-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 time-wrap">-->
+                    <!--<div class="time-interval">-->
+                        <!--<span>{{ task.createdAt }}</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

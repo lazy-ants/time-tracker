@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-md-6">
             <div class="input-wrap">
-                <input type="text" class="form-control" #titleInput name="title" placeholder="What are you working on..." />
+                <input id="input" type="text" [(ngModel)]="title" #titleInput value = "{{title}}" class="form-control" name="title" placeholder="What are you working on..." />
             </div>
         </div>
         <div class="col-md-3">
             <div class="projects-wrap">
                 <select #selectedCategory>
-                    <option *ngFor="let project of projects" [ngValue]="project">{{ project.title }}</option>
+                    <option *ngFor="let project of projects" [value]="project.title+';'+project.id">{{ project.title }}</option>
                 </select>
             </div>
         </div>
@@ -20,9 +20,10 @@
                         <i class="fa fa-play-circle" aria-hidden="true"></i>
                     </a>
                     <a class="stop-timer" [hidden]="!play" (click) = "stopTimer();
-                        setProjectName(selectedCategory.value);
+                        setProject(selectedCategory.value);
                         finishedAt = TimeWatchService.whatTime();
-                        create(titleInput.value); titleInput.value = ''">
+                        create(title);
+                        titleInput.value = ''">
                         <i class="fa fa-stop-circle" aria-hidden="true"></i>
                     </a>
                 </div>
