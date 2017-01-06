@@ -16,15 +16,40 @@ import { TaskListComponent} from './task-list/task-list.component';
 export class TasksComponent implements OnInit {
     tasks: ITask[];
     title: string;
+    createdAt: any;
 
     constructor (private taskService: TaskService,
-                 private projectService: ProjectService) {
+                 private projectService: ProjectService,
+                 private timeWatchService: TimeWatchService) {
         this.tasks = [];
     }
 
     ngOnInit() {
         this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
         this.projectService.getProjects().subscribe(projects => this.projects = projects);
+    }
+
+    onUpdate(task: ITask) {
+        this.title = task.title;
+        console.log(this.title);
+    }
+
+    onStartGetTime() {
+        this.createdAt = this.timeWatchService.currentTime();
+        console.log(this.createdAt);
+    }
+
+    onTaskDeleted(task: ITask): void {
+        this.taskService.deleteTask(task).subscribe(task => this.deleteTask(task));
+    }
+
+    onTaskCreated(task: ITask): void {
+        this.taskService.addTask(task).subscribe(task => this.addTask(task));
+    }
+
+    private addTask(task: ITask): void {
+        console.log(task);
+        this.tasks.push(task);
     }
 
     private deleteTask(task: ITask): void {
@@ -34,34 +59,4 @@ export class TasksComponent implements OnInit {
             this.tasks.splice(index, 1);
         }
     }
-    onTaskDeleted(task: ITask): void {
-        this.taskService.deleteTask(task).subscribe(task => this.deleteTask(task));
-    }
-
-    // private deleteTask(task: ITask): void {
-    //     for (let key in this.tasks) {
-    //         let tasks = this.tasks[key].tasks;
-    //         let index = tasks.indexOf(task);
-    //         if (index > -1) {
-    //             tasks.splice(index, 1);
-    //         }
-    //     }
-    // }
-    private addTask(task: ITask): void {
-        this.tasks.push(task);
-    }
-
-    onTaskCreated(task: ITask): void {
-        this.taskService.addTask(task).subscribe(task => this.addTask(task));
-    }
-
-    onUpdate(task: ITask) {
-        this.title = task.title;
-        console.log(task);
-    }
-
-    // onTaskToggled(task: ITask): void {
-    //     this.taskService.saveTask(task).subscribe(task => {});
-    // }
-
 }

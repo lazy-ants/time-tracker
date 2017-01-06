@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="input-wrap">
-                <input id="input" type="text" [(ngModel)]="title" #titleInput value = "{{title}}" class="form-control" name="title" placeholder="What are you working on..." />
+                <input id="input" type="text" [(ngModel)]="title" #titleInput value = "{{ title }}" class="form-control" name="title" placeholder="What are you working on..." />
             </div>
         </div>
         <div class="col-md-3">
@@ -16,13 +16,16 @@
             <div class="timewatch-wrap">
                 <timer></timer>
                 <div class="buttons-wrap">
-                    <a class="play-timer" [hidden]="play" (click)="playTimer(); createdAt = TimeWatchService.whatTime()">
+                    <a class="play-timer" [hidden]="play"
+                        (click)="playTimer();
+                        startGetTime()">
                         <i class="fa fa-play-circle" aria-hidden="true"></i>
                     </a>
-                    <a class="stop-timer" [hidden]="!play" (click) = "stopTimer();
+                    <a class="stop-timer" [hidden]="!play"
+                        (click) = "stopTimer();
                         setProject(selectedCategory.value);
-                        finishedAt = TimeWatchService.whatTime();
-                        create(title);
+                        stopGetTime();
+                        create();
                         titleInput.value = ''">
                         <i class="fa fa-stop-circle" aria-hidden="true"></i>
                     </a>

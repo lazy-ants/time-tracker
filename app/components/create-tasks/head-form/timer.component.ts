@@ -20,10 +20,10 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     sub: Subscription;
 
-    constructor(private TimeWatchService: TimeWatchService) { }
+    constructor(private timeWatchService: TimeWatchService) { }
 
     ngOnInit() {
-        this.playStopUnsubscribe = this.TimeWatchService.playStop$.subscribe((res: any) => this.playStop(res));
+        this.playStopUnsubscribe = this.timeWatchService.playStop$.subscribe((res: any) => this.playStop(res));
     }
 
     ngOnDestroy() {
@@ -40,6 +40,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     private startTimer() {
         let timer = Observable.timer(1, 1000);
+        if (this.sub) this.sub.unsubscribe();
         this.sub = timer.subscribe(
             t => {
                 this.ticks = this.start + t;

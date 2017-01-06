@@ -14,15 +14,16 @@
                     </div>
                 </div>
                 <div class="col-md-3 time-wrap">
-                    <div class="time-interval">
-                        <span>{{ msToTime(task.finishedAt - task.createdAt) }}</span>
+                    <div class="time-interval" *ngFor="let record of task.records">
+                        <span>{{ msToTime(record.finishedAt - record.createdAt) }}</span>
                         <div class="records-wrap">
-                            <span>{{ task.createdAt | date:'shortTime' }}</span> -
-                            <span>{{ task.finishedAt | date:'shortTime' }}</span>
+                            <span>{{ record.createdAt | date:'shortTime' }}</span> -
+                            <span>{{ record.finishedAt | date:'shortTime' }}</span>
                         </div>
-                        <a class="play-timer" [hidden]="play" (click)="playTimer();
-                            updateTitle(task);
-                            createdAt = TimeWatchService.whatTime()">
+                        <a class="play-timer"
+                           (click)="startGetTime();
+                            playTimer();
+                            updateTitle(task);">
                             <i class="fa fa-play-circle" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -31,27 +32,3 @@
         </div>
     </div>
 </div>
-<!--<div class="project-wrap" *ngFor="let task of tasks">-->
-    <!--<div class="task-item-wrap clearfix" *ngFor="let t of task.tasks">-->
-        <!--<div class="container">-->
-            <!--<div class="row">-->
-                <!--<div class="col-md-6">-->
-                    <!--<div class="task-item-content">-->
-                        <!--<a class="delete-btn" (click)="removeTask(t)"><i class="fa fa-trash"></i></a>-->
-                        <!--<input type="text" value="{{ t.title }}">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-3">-->
-                    <!--<div class="project-content">-->
-                        <!--{{ task.title }}-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-3 time-wrap">-->
-                    <!--<div class="time-interval">-->
-                        <!--<span>{{ task.createdAt }}</span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->

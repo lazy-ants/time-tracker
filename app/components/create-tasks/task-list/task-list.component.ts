@@ -9,20 +9,25 @@ import { ITask } from '../../../shared/task.model';
     templateUrl: 'task-list.component.html',
     styleUrls: ['task-list.component.css'],
 })
+
 export class TaskListComponent {
 
     @Input() tasks: ITask[];
     @Output() deleted = new EventEmitter<ITask>();
     @Output() update = new EventEmitter();
+    @Output() start = new EventEmitter();
 
-    constructor(private TimeWatchService: TimeWatchService) { }
+    constructor(private timeWatchService: TimeWatchService) { }
 
     playTimer() {
-        this.TimeWatchService.playTimer();
+        this.timeWatchService.playTimer();
     }
 
     updateTitle(task: ITask): void {
         this.update.emit(task);
+    }
+    startGetTime() {
+        this.start.emit();
     }
 
     msToTime(duration) {
@@ -45,33 +50,4 @@ export class TaskListComponent {
             this.tasks.splice(index, 1);
         }
     }
-
-    // @Output() toggled: EventEmitter<ITask>;
-
-    // removeTask(t) {
-    //     this.deleted.emit(t);
-    // }
-
-    // get sortedTasks(): ITask[] {
-    //     return this.tasks
-    //         .map(task => task)
-    //         .sort((a, b) => {
-    //             if (a.title > b.title) return 1;
-    //             else if (a.title < b.title) return -1;
-    //             else return 0;
-    //         })
-    //         .sort((a, b) => {
-    //             if (a.done && !b.done) return 1;
-    //             else if (!a.done && b.done) return -1;
-    //             else return 0;
-    //         });
-    // }
-    //
-    // onTodoToggled(task: ITask): void {
-    //     this.toggled.emit(task);
-    // }
-    //
-    // onTodoDeleted(task: ITask): void {
-    //     this.deleted.emit(task);
-    // }
 }

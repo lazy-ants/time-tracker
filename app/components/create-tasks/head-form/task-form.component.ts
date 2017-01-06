@@ -12,51 +12,53 @@ import { Task } from '../../../shared/task.model';
 
 export class TaskFormComponent implements OnInit, OnDestroy {
 
-    @Output() created: EventEmitter<Task>;
     @Input() title: string;
+    @Input() createdAt: any;
     @Input() tasks: ITask[];
     @Input() projects: IProject[];
-
+    @Output() created: EventEmitter<Task>;
 
     projectValue: string;
     projectTitle: string;
     projectId: number;
-    createdAt: string;
-    finishedAt: string;
+    createdAt: any;
+    finishedAt: any;
 
     private playStopUnsubscribe: any;
     private play: boolean;
 
-    constructor(private TimeWatchService: TimeWatchService) {
+    constructor(private timeWatchService: TimeWatchService) {
         this.tasks = [];
         this.created = new EventEmitter<Task>();
     }
 
     ngOnInit() {
-        this.playStopUnsubscribe = this.TimeWatchService.playStop$.subscribe((res: any) => this.setPlay(res));
+        this.playStopUnsubscribe = this.timeWatchService.playStop$.subscribe((res: any) => this.setPlay(res));
     }
 
     ngOnDestroy() {
         this.playStopUnsubscribe.unsubscribe();
     }
 
-    private setPlay(res: any) {
-        (res.play) ? this.play = true : this.play = false;
-    }
-
     playTimer() {
-        this.TimeWatchService.playTimer();
+        this.timeWatchService.playTimer();
     }
 
     stopTimer() {
-        this.TimeWatchService.stopTimer();
+        this.timeWatchService.stopTimer();
     }
 
-    create(title: string): void {
-        if (title && this.projectId && this.projectTitle && this.createdAt && this.finishedAt ) {
-            let task = new Task(title, this.projectId, this.projectTitle, this.createdAt, this.finishedAt);
+    create() {
+        if (this.title && this.projectId && this.projectTitle && this.createdAt && this.finishedAt ) {
+            let task = new Task(this.title, this.projectId, this.projectTitle, this.createdAt, this.finishedAt);
             this.created.emit(task);
         }
+        console.log(this.title);
+        console.log(this.projectId);
+        console.log(this.projectTitle);
+        console.log(this.createdAt);
+        console.log(this.finishedAt);
+        this.title = "";
     }
 
     setProject(projectValue: string) {
@@ -64,4 +66,17 @@ export class TaskFormComponent implements OnInit, OnDestroy {
         this.projectTitle = projectArr[0];
         this.projectId = projectArr[1];
     }
+
+    startGetTime() {
+        this.createdAt = this.timeWatchService.currentTime();
+    }
+
+    stopGetTime() {
+        this.finishedAt = this.timeWatchService.currentTime();
+    }
+
+    private setPlay(res: any) {
+        (res.play) ? this.play = true : this.play = false;
+    }
+
 }

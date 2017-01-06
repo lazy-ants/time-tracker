@@ -1,8 +1,8 @@
 <header class="header-wrap">
     <div class="container">
-        <task-form [title]="title" [projects]="projects" [tasks]="tasks" (created)="onTaskCreated($event)"></task-form>
+        <task-form [createdAt] = "createdAt" [title]="title" [projects]="projects" [tasks]="tasks" (created)="onTaskCreated($event)"></task-form>
     </div>
 </header>
 <div class="content-wrap">
-    <task-list [tasks]="tasks" (update)="onUpdate($event)" (deleted) = "onTaskDeleted($event)"></task-list>
+    <task-list [tasks]="tasks" (start)="onStartGetTime($event)" (update)="onUpdate($event)" (deleted) = "onTaskDeleted($event)"></task-list>
 </div>
