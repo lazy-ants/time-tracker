@@ -1,11 +1,24 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 
 @Injectable()
 export class TimeWatchService {
 
+    @Output() playStop$ = new EventEmitter();
+
     private play: boolean = false;
     private stop: boolean = true;
-    public playStop$ = new EventEmitter();
+
+
+    public startStopTime() {
+        let date = new Date();
+        console.log(date.getTime());
+        return date.getTime();
+    }
+
+    public currentTime() {
+        let date = new Date();
+        return date;
+    }
 
     public playTimer() {
         this.play = true;

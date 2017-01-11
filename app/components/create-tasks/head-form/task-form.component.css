@@ -1,0 +1,66 @@
+.form-group {
+    margin: 0;
+}
+.form-group input {
+    padding: .5rem;
+    text-overflow: ellipsis;
+    width: 100%;
+    line-height: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+}
+.form-group input,
+.form-group input:focus,
+.form-group input:visited,
+.form-group select,
+.form-group select:focus,
+.form-group select:visited{
+    border: none;
+    outline: none;
+}
+.form-group button {
+    width: 20%;
+    -webkit-border-radius: 0 .25rem .25rem 0;
+    -moz-border-radius: 0 .25rem .25rem 0;
+    border-radius: 0 .25rem .25rem 0;
+}
+.input-wrap input:focus.ng-invalid.ng-dirty {
+    border: 1px solid #ff0000;
+}
+.timewatch-wrap {
+    text-align: right;
+}
+timer {
+    margin: 0 20px 0 0;
+    font-size: 2rem;
+}
+timer, .buttons-wrap {
+    display: inline-block;
+    vertical-align: middle;
+}
+select {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    margin: 11px 0 0;
+    background: transparent;
+}
+.stop-timer,
+.play-timer {
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+.stop-timer i {
+    color: #ff0000;
+    transition: all .4s ease;
+}
+.stop-timer i:hover {
+    color: #cc0000;
+}
+.play-timer i {
+    color: #00cc00;
+    transition: all .4s ease;
+}
+.play-timer i:hover {
+    color: #009933;
+}
+

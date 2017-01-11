@@ -1,0 +1,38 @@
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="input-wrap" #taskForm="ngForm">
+                <input type="text" [(ngModel)]="title" class="form-control" name="title" placeholder="What are you working on..." />
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div class="projects-wrap">
+                <select #selectedCategory>
+                    <option *ngFor="let project of projects" [value]="project.title+';'+project.id">{{ project.title }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="timewatch-wrap">
+                <timer></timer>
+                <div class="buttons-wrap">
+                    <a class="play-timer" [hidden]="play"
+                        (click)="playTimer();
+                        getCreatedAtTime();
+                        getStartTime()">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                    </a>
+                    <a class="stop-timer" [hidden]="!play"
+                        (click) = "stopTimer();
+                        setProject(selectedCategory.value);
+                        getStopTime();
+                        create();
+                        clearTitle();
+                        ">
+                        <i class="fa fa-stop-circle" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

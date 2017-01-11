@@ -1,0 +1,37 @@
+<div class="project-wrap" *ngFor="let task of sortedTasks">
+    <div class="container">
+        <div>{{ task.createdAt | date }}</div>
+    </div>
+    <div class="task-item-wrap clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="task-item-content">
+                        <a class="delete-btn" (click)="removeTask(task)"><i class="fa fa-trash"></i></a>
+                        <input type="text" [(ngModel)]="task.title" name="title" value="{{ task.title }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="project-content">
+                        {{ task.project.title }}
+                    </div>
+                </div>
+                <div class="col-md-3 time-wrap">
+                    <div class="time-interval" *ngFor="let record of task.records">
+                        <span>{{ msToTime(record.finishedAt - record.startedAt) }}</span>
+                        <div class="records-wrap">
+                            <span>{{ record.startedAt | date:'shortTime' }}</span> -
+                            <span>{{ record.finishedAt | date:'shortTime' }}</span>
+                        </div>
+                        <a class="play-timer"
+                           (click)="startGetTime();
+                            playTimer();
+                            updateTitle(task);">
+                            <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

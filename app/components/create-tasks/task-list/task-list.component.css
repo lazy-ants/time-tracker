@@ -1,0 +1,76 @@
+.task-item-wrap {
+    padding: 10px 0;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: all .4s ease;
+}
+.task-item-content input,
+.task-item-content a {
+    display: inline-block;
+    vertical-align: middle;
+}
+.task-item-content {
+    position: relative;
+}
+.task-item-content input,
+.task-item-content input:focus,
+.task-item-content input:visited {
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.time-interval {
+    text-align: right;
+    position: relative;
+}
+.records-wrap {
+    font-size: 11px;
+    color: #a3a3a3;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.4s linear;
+}
+.play-timer {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: -50px;
+    font-size: 30px;
+    color: #a3a3a3;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.4s linear;
+}
+.task-item-wrap:hover .delete-btn,
+.task-item-wrap:hover:hover .records-wrap,
+.task-item-wrap:hover:hover .play-timer {
+    visibility: visible;
+    opacity: 1;
+}
+.delete-btn {
+    position: absolute;
+    left: -30px;
+    top: 0;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.4s linear;
+}
+.play-timer i {
+    color: #a3a3a3;
+    transition: all .4s ease;
+}
+.play-timer:hover i {
+    color: #373a3c;
+}
+.delete-btn i {
+    transition: all .4s ease;
+}
+.delete-btn:hover i {
+    color: #ff0000;
+}
+
+
+

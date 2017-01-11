@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
-import { TodosComponent } from './components/todos/todos.component';
-import { Todo } from './shared/todo.model';
-import { Project } from './shared/project.model';
-import { TodoService } from './shared/todo.service';
+import { TasksComponent } from './components/create-tasks/tasks.component';
+import { Task } from './shared/task.model';
+import { TaskService } from './shared/task.service';
 import { ProjectService } from './shared/project.service';
-import { TimeWatchService } from './components/todos/todo-timewatch/timewatch.service';
+import { TimeWatchService } from './shared/timewatch.service';
 
 @Component({
-    selector: 'todo-app',
-    templateUrl: './app/app.component.html',
-    providers: [ TodoService, ProjectService, TimeWatchService ],
+    moduleId: module.id,
+    selector: 'time-tracker',
+    templateUrl: 'app.component.html',
+    providers: [ TaskService, ProjectService, TimeWatchService ],
 })
 
 export class AppComponent {
