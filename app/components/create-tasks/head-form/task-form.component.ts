@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { TimeWatchService } from '../../../shared/timewatch.service';
-import { IProject } from '../../../shared/project.model';
+import { Project } from '../../../shared/project.model';
 import { Task } from '../../../shared/task.model';
 
 @Component({
@@ -12,24 +12,25 @@ import { Task } from '../../../shared/task.model';
 
 export class TaskFormComponent implements OnInit, OnDestroy {
 
-    @Input() title: string;
+    @Input() title: any;
     @Input() createdAt: any;
-    @Input() tasks: ITask[];
-    @Input() projects: IProject[];
-    @Output() created: EventEmitter<Task>;
+    @Input() startedAt: any;
+    @Input() tasks: Task[];
+    @Input() projects: Project[];
+    @Output() created = new EventEmitter();
+    @Output() clear = new EventEmitter();
 
-    projectValue: string;
-    projectTitle: string;
-    projectId: number;
-    createdAt: any;
+    projectValue: any;
+    projectTitle: any;
     finishedAt: any;
+    projectId: number;
+
 
     private playStopUnsubscribe: any;
     private play: boolean;
 
     constructor(private timeWatchService: TimeWatchService) {
         this.tasks = [];
-        this.created = new EventEmitter<Task>();
     }
 
     ngOnInit() {
@@ -48,31 +49,34 @@ export class TaskFormComponent implements OnInit, OnDestroy {
         this.timeWatchService.stopTimer();
     }
 
-    create() {
-        if (this.title && this.projectId && this.projectTitle && this.createdAt && this.finishedAt ) {
-            let task = new Task(this.title, this.projectId, this.projectTitle, this.createdAt, this.finishedAt);
-            this.created.emit(task);
-        }
-        console.log(this.title);
-        console.log(this.projectId);
-        console.log(this.projectTitle);
-        console.log(this.createdAt);
-        console.log(this.finishedAt);
-        this.title = "";
+    clearTitle() {
+        this.clear.emit();
     }
 
-    setProject(projectValue: string) {
+    create() {
+        if (this.title && this.projectId && this.projectTitle && this.createdAt && this.startedAt && this.finishedAt ) {
+            let task = new Task(this.title, this.projectId, this.projectTitle, this.createdAt, this.startedAt, this.finishedAt);
+            this.created.emit(task);
+        }
+        console.log(this.createdAt);
+    }
+
+    setProject(projectValue: any) {
         let projectArr = projectValue.split(';');
         this.projectTitle = projectArr[0];
         this.projectId = projectArr[1];
     }
 
-    startGetTime() {
+    getCreatedAtTime() {
         this.createdAt = this.timeWatchService.currentTime();
     }
 
-    stopGetTime() {
-        this.finishedAt = this.timeWatchService.currentTime();
+    getStartTime() {
+        this.startedAt = this.timeWatchService.startStopTime();
+    }
+
+    getStopTime() {
+        this.finishedAt = this.timeWatchService.startStopTime();
     }
 
     private setPlay(res: any) {

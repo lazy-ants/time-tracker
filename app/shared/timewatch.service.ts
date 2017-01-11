@@ -9,11 +9,15 @@ export class TimeWatchService {
     private stop: boolean = true;
 
 
-    private currentTime() {
+    public startStopTime() {
         let date = new Date();
-        let timeInMs = Date.now(date);
-        console.log(timeInMs);
-        return timeInMs;
+        console.log(date.getTime());
+        return date.getTime();
+    }
+
+    public currentTime() {
+        let date = new Date();
+        return date;
     }
 
     public playTimer() {

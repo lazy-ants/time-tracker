@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { IProject } from "./project.model";
+import { Project } from "./project.model";
 
 const API_ENDPOINT = 'http://localhost:3015/projects';
 
@@ -15,25 +15,25 @@ export class ProjectService {
 
     constructor(private http: Http) {}
 
-    getProjects(): Observable<IProject[]> {
+    getProjects(): Observable<Project[]> {
         return this.http.get(API_ENDPOINT)
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    addProject(project: IProject): Observable<IProject> {
+    addProject(project: Project): Observable<Project> {
         return this.post(project);
     }
 
-    saveProject(project: IProject): Observable<IProject> {
+    saveProject(project: Project): Observable<Project> {
         return this.put(project);
     }
 
-    deleteProject(project: IProject): Observable<IProject> {
+    deleteProject(project: Project): Observable<Project> {
         return this.delete(project);
     }
 
-    private post(project: IProject): Observable<IProject> {
+    private post(project: Project): Observable<Project> {
         let body = JSON.stringify(project);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers });
@@ -43,7 +43,7 @@ export class ProjectService {
             .catch(this.handleError)
     }
 
-    private put(project: IProject): Observable<IProject> {
+    private put(project: Project): Observable<Project> {
         let body = JSON.stringify(project);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers });
@@ -55,7 +55,7 @@ export class ProjectService {
             .catch(this.handleError)
     }
 
-    private delete(project: IProject): Observable<IProject> {
+    private delete(project: Project): Observable<Project> {
         let url = `${API_ENDPOINT}/${project.id}`;
 
         return this.http.delete(url)

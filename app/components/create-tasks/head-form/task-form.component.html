@@ -1,9 +1,9 @@
 <div class="form-group">
     <div class="row">
         <div class="col-md-6">
-            <div class="input-wrap">
-                <input id="input" type="text" [(ngModel)]="title" #titleInput value = "{{ title }}" class="form-control" name="title" placeholder="What are you working on..." />
-            </div>
+            <form class="input-wrap" #taskForm="ngForm">
+                <input type="text" [(ngModel)]="title" class="form-control" name="title" placeholder="What are you working on..." />
+            </form>
         </div>
         <div class="col-md-3">
             <div class="projects-wrap">
@@ -18,15 +18,17 @@
                 <div class="buttons-wrap">
                     <a class="play-timer" [hidden]="play"
                         (click)="playTimer();
-                        startGetTime()">
+                        getCreatedAtTime();
+                        getStartTime()">
                         <i class="fa fa-play-circle" aria-hidden="true"></i>
                     </a>
                     <a class="stop-timer" [hidden]="!play"
                         (click) = "stopTimer();
                         setProject(selectedCategory.value);
-                        stopGetTime();
+                        getStopTime();
                         create();
-                        titleInput.value = ''">
+                        clearTitle();
+                        ">
                         <i class="fa fa-stop-circle" aria-hidden="true"></i>
                     </a>
                 </div>

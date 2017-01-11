@@ -1,9 +1,4 @@
-export interface IProject {
-    id: number;
-    title: string;
-}
-
-export class Project implements IProject {
+export class Project {
     id: number;
     title: string;
 

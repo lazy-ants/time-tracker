@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { ITask } from './task.model';
+import { Task } from './task.model';
 
 const API_ENDPOINT = 'http://localhost:3015/tasks';
 
@@ -15,25 +15,25 @@ export class TaskService {
 
     constructor(private http: Http) {}
 
-    getTasks(): Observable<ITask[]> {
+    getTasks(): Observable<Task[]> {
         return this.http.get(API_ENDPOINT)
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    addTask(task: ITask): Observable<ITask> {
+    addTask(task: Task): Observable<Task> {
         return this.post(task);
     }
 
-    saveTask(task: ITask): Observable<ITask> {
+    saveTask(task: Task): Observable<Task> {
         return this.put(task);
     }
 
-    deleteTask(task: ITask): Observable<ITask> {
+    deleteTask(task: Task): Observable<Task> {
         return this.delete(task);
     }
 
-    private post(task: ITask): Observable<ITask> {
+    private post(task: Task): Observable<Task> {
         let body = JSON.stringify(task);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers });
@@ -43,7 +43,7 @@ export class TaskService {
             .catch(this.handleError)
     }
 
-    private put(task: ITask): Observable<ITask> {
+    private put(task: Task): Observable<Task> {
         let body = JSON.stringify(task);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers });
@@ -55,7 +55,7 @@ export class TaskService {
             .catch(this.handleError)
     }
 
-    private delete(task: ITask): Observable<ITask> {
+    private delete(task: Task): Observable<Task> {
         let url = `${API_ENDPOINT}/${task.id}`;
 
         return this.http.delete(url)

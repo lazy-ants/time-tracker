@@ -1,4 +1,7 @@
-<div class="project-wrap" *ngFor="let task of tasks">
+<div class="project-wrap" *ngFor="let task of sortedTasks">
+    <div class="container">
+        <div>{{ task.createdAt | date }}</div>
+    </div>
     <div class="task-item-wrap clearfix">
         <div class="container">
             <div class="row">
@@ -15,9 +18,9 @@
                 </div>
                 <div class="col-md-3 time-wrap">
                     <div class="time-interval" *ngFor="let record of task.records">
-                        <span>{{ msToTime(record.finishedAt - record.createdAt) }}</span>
+                        <span>{{ msToTime(record.finishedAt - record.startedAt) }}</span>
                         <div class="records-wrap">
-                            <span>{{ record.createdAt | date:'shortTime' }}</span> -
+                            <span>{{ record.startedAt | date:'shortTime' }}</span> -
                             <span>{{ record.finishedAt | date:'shortTime' }}</span>
                         </div>
                         <a class="play-timer"
